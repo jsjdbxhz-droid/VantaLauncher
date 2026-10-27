@@ -1,0 +1,54 @@
+{
+  "name": "vanta-launcher",
+  "version": "0.1.0",
+  "description": "A lightweight Minecraft Java Edition launcher UI for Windows.",
+  "main": "electron/main.js",
+  "author": "BlazeMC",
+  "license": "UNLICENSED",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron .",
+    "build:win": "node scripts/build-win.js",
+    "build:win:dir": "node scripts/build-win.js --dir",
+    "dist": "npm run build:win",
+    "pack": "electron-builder --dir"
+  },
+  "devDependencies": {
+    "electron": "^44.4.5",
+    "electron-builder": "^26.15.3"
+  },
+  "build": {
+    "appId": "com.blazemc.launcher",
+    "productName": "Vanta Launcher",
+    "executableName": "VantaLauncher",
+    "electronVersion": "44.4.5",
+    "asar": true,
+    "npmRebuild": false,
+    "nodeGypRebuild": false,
+    "files": [
+      "electron/**/*",
+      "src/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "artifactName": "Vanta Launcher Setup ${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "shortcutName": "Vanta Launcher",
+      "uninstallDisplayName": "Vanta Launcher",
+      "deleteAppDataOnUninstall": false
+    }
+  }
+}
